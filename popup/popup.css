@@ -1,0 +1,207 @@
+:root {
+  color-scheme: light;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 320px;
+  background: #fafafa;
+  color: #222;
+}
+
+.popup {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.popup__header h1 {
+  margin: 0;
+  font-size: 18px;
+  color: #ff6200;
+}
+
+.popup__header p {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: #666;
+}
+
+.popup__form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.popup__field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.popup__field span {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #777;
+}
+
+.popup__field input,
+.popup__field textarea {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  font-size: 14px;
+}
+
+.popup__field textarea {
+  min-height: 56px;
+  resize: vertical;
+}
+
+.popup__field input:focus,
+.popup__field textarea:focus {
+  outline: none;
+  border-color: #ff6200;
+  box-shadow: 0 0 0 2px rgba(255, 98, 0, 0.2);
+}
+
+.popup__field small {
+  font-size: 11px;
+  color: #777;
+}
+
+.popup__checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.popup__fieldset {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.popup__fieldset legend {
+  padding: 0 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #777;
+}
+
+.popup__actions {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.btn {
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  background: #e5e5e5;
+  color: #222;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-primary {
+  background: #ff6200;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: #ff5100;
+}
+
+.btn-accent {
+  background: #424bff;
+  color: #fff;
+}
+
+.btn-accent:hover {
+  background: #2d37f5;
+}
+
+.btn-outline {
+  background: transparent;
+  color: #ff6200;
+  border: 1px solid rgba(255, 98, 0, 0.4);
+}
+
+.btn-outline:hover {
+  background: rgba(255, 98, 0, 0.08);
+}
+
+.popup__status {
+  min-height: 20px;
+  font-size: 12px;
+  color: #555;
+}
+
+.popup__updates {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  padding: 12px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.popup__updates h2 {
+  margin: 0;
+  font-size: 15px;
+  color: #333;
+}
+
+.popup__notes-label {
+  font-size: 12px;
+  font-weight: 600;
+  margin: 0;
+  color: #555;
+}
+
+.popup__updates pre {
+  margin: 0;
+  background: #f5f5f5;
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  max-height: 160px;
+  overflow-y: auto;
+}
+
+.popup__update-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.popup__update-status,
+.popup__update-hash {
+  font-size: 12px;
+  color: #444;
+  margin: 0;
+}
+
+.popup__update-hash {
+  word-break: break-all;
+}

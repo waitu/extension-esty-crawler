@@ -1,0 +1,255 @@
+.etsy-crawl-panel {
+  position: fixed;
+  top: 80px;
+  right: 24px;
+  width: 320px;
+  max-width: calc(100vw - 32px);
+  background: #ffffff;
+  color: #111111;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+  border-radius: 12px;
+  z-index: 999999;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.etsy-crawl-panel .ec-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #f45800, #ff7a1f);
+  color: #fff;
+  font-weight: 600;
+}
+
+.etsy-crawl-panel .ec-title {
+  font-size: 16px;
+  letter-spacing: 0.3px;
+}
+
+.etsy-crawl-panel .ec-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.etsy-crawl-panel .ec-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #f1f1f1;
+  color: #202020;
+}
+
+.etsy-crawl-panel .ec-btn:hover {
+  background: #e2e2e2;
+}
+
+.etsy-crawl-panel .ec-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.etsy-crawl-panel .ec-btn-link {
+  background: transparent;
+  color: #fff;
+  padding: 0 4px;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.etsy-crawl-panel .ec-btn-link:hover {
+  color: #ffe1ce;
+  background: transparent;
+}
+
+.etsy-crawl-panel .ec-btn-primary {
+  background: #ff6200;
+  color: #fff;
+  font-weight: 600;
+}
+
+.etsy-crawl-panel .ec-btn-primary:hover {
+  background: #ff5100;
+}
+
+.etsy-crawl-panel .ec-body {
+  padding: 16px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.etsy-crawl-panel .ec-body-hidden {
+  display: none;
+}
+
+.etsy-crawl-panel .ec-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+  gap: 6px;
+}
+
+.etsy-crawl-panel .ec-field-inline {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.etsy-crawl-panel .ec-field label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #5f5f5f;
+}
+
+.etsy-crawl-panel .ec-field small {
+  font-size: 11px;
+  color: #7a7a7a;
+}
+
+.etsy-crawl-panel input[type="text"],
+.etsy-crawl-panel input[type="number"],
+.etsy-crawl-panel textarea {
+  width: 100%;
+  padding: 9px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  font-size: 13px;
+  transition: border-color 0.2s;
+  min-height: 42px;
+  resize: vertical;
+}
+
+.etsy-crawl-panel input[type="text"]:focus,
+.etsy-crawl-panel input[type="number"]:focus,
+.etsy-crawl-panel textarea:focus {
+  outline: none;
+  border-color: #ff6200;
+  box-shadow: 0 0 0 2px rgba(255, 98, 0, 0.15);
+}
+
+.etsy-crawl-panel .ec-checkbox {
+  margin-bottom: 12px;
+}
+
+.etsy-crawl-panel .ec-checkbox label {
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.etsy-crawl-panel .ec-modes {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.etsy-crawl-panel .ec-radio {
+.etsy-crawl-panel .ec-buttons-stack {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.etsy-crawl-panel .ec-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+.etsy-crawl-panel .ec-btn-ghost {
+  background: transparent;
+  color: #ff6200;
+  border: 1px solid rgba(255, 98, 0, 0.4);
+}
+.etsy-crawl-panel .ec-btn-ghost:hover {
+  background: rgba(255, 98, 0, 0.08);
+}
+  margin-bottom: 12px;
+}
+
+.etsy-crawl-panel .ec-status {
+  font-size: 13px;
+  color: #333;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.etsy-crawl-panel .ec-progress {
+  width: 100%;
+  background: #f0f0f0;
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+
+.etsy-crawl-panel .ec-progress-bar {
+  height: 6px;
+  background: linear-gradient(90deg, #ff8a3d, #ff6200);
+  width: 0%;
+  transition: width 0.25s ease;
+}
+
+.etsy-crawl-panel .ec-progress-caption {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #5b5b5b;
+  text-align: right;
+}
+
+.ec-quick-add-container {
+  display: flex;
+  justify-content: flex-start;
+  padding: 4px 8px;
+  margin-bottom: 6px;
+  position: relative;
+  z-index: 2147483000;
+}
+
+.ec-quick-add {
+  background: #ff6200;
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(255, 98, 0, 0.18);
+  transition: all 0.2s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.ec-quick-add:hover {
+  background: #ff7a26;
+}
+
+.ec-quick-add--loading {
+  opacity: 0.7;
+  cursor: progress;
+}
+
+.ec-quick-add--saved {
+  background: #e4e6ec;
+  color: #555861;
+  box-shadow: none;
+  cursor: default;
+}
+
+.ec-quick-add--error {
+  background: #d93025;
+  color: #ffffff;
+}

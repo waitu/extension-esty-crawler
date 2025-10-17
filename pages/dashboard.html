@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Quản lý dữ liệu Etsy</title>
+    <link rel="stylesheet" href="dashboard.css" />
+  </head>
+  <body>
+    <main class="dash">
+      <header class="dash__header">
+        <div>
+          <h1>Etsy Crawl Manager</h1>
+          <p>Theo dõi và tải về các sản phẩm đã được crawl.</p>
+        </div>
+        <div class="dash__header-actions">
+          <button id="download-csv" class="btn btn-primary">Tải CSV</button>
+          <button id="download-xlsx" class="btn btn-primary">Tải XLSX</button>
+          <button id="custom-export" class="btn">TikTok Export</button>
+          <button id="refresh" class="btn">Làm mới</button>
+          <button id="delete-selected" class="btn btn-warning" disabled>Xóa đã chọn</button>
+          <button id="clear" class="btn btn-danger">Xóa lịch sử</button>
+        </div>
+      </header>
+
+      <section class="dash__filters">
+        <label>
+          <span>Tìm kiếm</span>
+          <input type="search" id="search" placeholder="Nhập tên sản phẩm, ID, giá..." />
+        </label>
+        <label>
+          <span>Lọc theo ngày</span>
+          <select id="date-filter">
+            <option value="all">Tất cả</option>
+            <option value="today">Hôm nay</option>
+            <option value="7d">7 ngày qua</option>
+            <option value="30d">30 ngày qua</option>
+          </select>
+        </label>
+        <div class="dash__summary">
+          <span id="total-count">0 sản phẩm</span>
+        </div>
+        <div id="status" class="dash__status" role="status" aria-live="polite"></div>
+      </section>
+
+      <section class="dash__table-wrapper">
+        <table class="dash__table">
+          <thead>
+            <tr>
+              <th class="dash__col-check">
+                <label class="dash__select-all">
+                  <input type="checkbox" id="select-all" />
+                  <span>Chọn</span>
+                </label>
+              </th>
+              <th>ID</th>
+              <th>Tên sản phẩm</th>
+              <th>Giá</th>
+              <th>Đánh giá</th>
+              <th>Ảnh</th>
+              <th>Link</th>
+              <th>Thông tin</th>
+            </tr>
+          </thead>
+          <tbody id="table-body">
+            <tr class="dash__empty">
+              <td colspan="8">Chưa có dữ liệu.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <div id="export-modal" class="modal" aria-hidden="true">
+      <div class="modal__backdrop" data-dismiss="export-modal"></div>
+      <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="export-modal-title">
+        <header class="modal__header">
+          <h2 id="export-modal-title">TikTok Custom Export</h2>
+          <button type="button" class="modal__close" data-dismiss="export-modal" aria-label="Đóng">×</button>
+        </header>
+        <form id="export-settings-form" class="modal__body">
+          <fieldset class="modal__section">
+            <legend>Profile xuất</legend>
+            <div class="modal__profile-grid">
+              <label class="modal__field">
+                <span>Chọn profile</span>
+                <select id="export-profile-select"></select>
+              </label>
+              <label class="modal__field">
+                <span>Tên profile</span>
+                <input type="text" id="export-profile-name" placeholder="Nhập tên profile" />
+              </label>
+              <div class="modal__profile-actions">
+                <button type="button" class="btn" id="export-profile-refresh">Làm mới</button>
+                <button type="button" class="btn" id="export-profile-new">Profile mới</button>
+                <button type="button" class="btn btn-primary" id="export-profile-save">Lưu profile</button>
+                <button type="button" class="btn btn-danger" id="export-profile-delete">Xóa</button>
+              </div>
+              <p class="modal__hint" id="export-profile-updated"></p>
+            </div>
+          </fieldset>
+
+          <fieldset class="modal__section">
+            <legend>Thông tin chung</legend>
+            <div class="modal__grid-cols">
+              <label class="modal__field">
+                <span>Tên seller</span>
+                <input type="text" id="export-seller" required />
+              </label>
+              <label class="modal__field">
+                <span>Số sản phẩm mỗi file</span>
+                <input type="number" id="export-products-per-file" min="1" />
+              </label>
+            </div>
+            <div class="modal__grid-cols">
+              <label class="modal__field">
+                <span>Số ảnh sản phẩm tối đa (1-9)</span>
+                <input type="number" id="export-image-count" min="1" max="9" />
+              </label>
+              <div class="modal__switches">
+                <label class="modal__check">
+                  <input type="checkbox" id="export-type-per-file" />
+                  <span>Tách file riêng cho Comfort Colors</span>
+                </label>
+                <label class="modal__check">
+                  <input type="checkbox" id="export-optimize-title" />
+                  <span>Tối ưu tiêu đề qua API</span>
+                </label>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="modal__section">
+            <legend>Danh sách size</legend>
+            <div id="export-size-options" class="chip-group" role="group" aria-label="Danh sách size"></div>
+            <div class="modal__inline-input">
+              <input type="text" id="export-size-new" placeholder="Thêm size mới" />
+              <button type="button" class="btn" id="export-size-add">Thêm</button>
+            </div>
+          </fieldset>
+
+          <fieldset class="modal__section">
+            <legend>Danh sách màu sắc</legend>
+            <div id="export-color-options" class="chip-group" role="group" aria-label="Danh sách màu"></div>
+            <div class="modal__inline-input">
+              <input type="text" id="export-color-new" placeholder="Thêm màu mới" />
+              <button type="button" class="btn" id="export-color-add">Thêm</button>
+            </div>
+          </fieldset>
+
+          <fieldset class="modal__section">
+            <legend>Loại sản phẩm</legend>
+            <div class="modal__options" id="export-product-types"></div>
+          </fieldset>
+
+          <fieldset class="modal__section">
+            <legend>Hình ảnh mặc định</legend>
+            <div class="modal__grid" id="export-image-inputs"></div>
+          </fieldset>
+
+          <fieldset class="modal__section">
+            <legend>Bảng giá</legend>
+            <p class="modal__hint">Điền giá cho từng loại sản phẩm và size. Để trống sẽ dùng giá mặc định.</p>
+            <div id="export-price-grid" class="price-table"></div>
+          </fieldset>
+
+          <fieldset class="modal__section" id="export-comfort-section">
+            <legend>Mô tả cho Comfort Colors</legend>
+            <textarea id="export-comfort-description" rows="6"></textarea>
+          </fieldset>
+
+          <footer class="modal__footer">
+            <button type="button" class="btn" data-dismiss="export-modal">Hủy</button>
+            <button type="submit" class="btn btn-primary">Xuất file</button>
+          </footer>
+        </form>
+      </div>
+    </div>
+
+    <script type="module" src="dashboard.js"></script>
+  </body>
+</html>

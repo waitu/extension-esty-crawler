@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Etsy Crawler</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="popup">
+      <header class="popup__header">
+        <h1>Etsy Crawler</h1>
+        <p>Cấu hình nhanh cho tiện ích crawl Etsy, tải dữ liệu trực tiếp.</p>
+      </header>
+      <form id="config-form" class="popup__form">
+        <label class="popup__field">
+          <span>Từ khóa tìm kiếm</span>
+          <input type="text" name="searchTerm" placeholder="Ví dụ: t shirt" />
+        </label>
+        <label class="popup__field">
+          <span>Số sản phẩm cần lấy</span>
+          <input type="number" min="1" max="1000" name="targetCount" />
+        </label>
+        <label class="popup__checkbox">
+          <input type="checkbox" name="includeAds" />
+          <span>Bao gồm quảng cáo</span>
+        </label>
+        <fieldset class="popup__fieldset">
+          <legend>Chế độ crawl</legend>
+          <label>
+            <input type="radio" name="mode" value="page" />
+            <span>Trang đang xem</span>
+          </label>
+          <label>
+            <input type="radio" name="mode" value="pagination" />
+            <span>Tự chuyển trang</span>
+          </label>
+        </fieldset>
+        <div class="popup__actions">
+          <button type="submit" class="btn btn-primary">Lưu cấu hình</button>
+          <button type="button" id="open-panel" class="btn">Mở giao diện</button>
+            <button type="button" id="open-dashboard" class="btn">Trang quản lý</button>
+        </div>
+          <button type="button" id="start-crawl" class="btn btn-accent">Crawl trang tìm kiếm</button>
+      </form>
+      <section class="popup__status" id="status"></section>
+      <section class="popup__updates">
+        <h2>Cập nhật phiên bản</h2>
+        <p><strong>Phiên bản hiện tại:</strong> <span id="update-current-version">--</span></p>
+        <p><strong>Phiên bản mới nhất:</strong> <span id="update-latest-version">--</span></p>
+        <p class="popup__notes-label">Ghi chú phát hành:</p>
+        <pre id="update-release-notes">(đang tải...)</pre>
+        <div class="popup__update-actions">
+          <button type="button" id="update-download" class="btn" disabled>Tải bản mới</button>
+          <button type="button" id="update-verify" class="btn" disabled>Kiểm tra SHA256</button>
+          <button type="button" id="update-refresh" class="btn">Kiểm tra ngay</button>
+        </div>
+        <p id="update-status" class="popup__update-status"></p>
+        <p id="update-hash-status" class="popup__update-hash"></p>
+      </section>
+    </main>
+    <script src="popup.js" type="module"></script>
+  </body>
+</html>

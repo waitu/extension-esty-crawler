@@ -90,7 +90,45 @@ node --check pages\dashboard.js
 
 Sau khi reload extension, thử crawl 3–5 sản phẩm và xác nhận rằng chúng xuất hiện trong dashboard, sau đó dùng nút “Lưu sản phẩm” để thêm một mục thủ công và tải CSV.
 
-## 🔭 Gợi ý mở rộng
+## � Đóng gói nhanh trên Windows
+
+Chạy script đi kèm để tạo gói ZIP (cùng file `.sha256` và `.hmac` nếu bạn đã đặt khóa trong `scripts/hmac.key`):
+
+```powershell
+scripts\package-extension.cmd
+```
+
+File ZIP đầu ra nằm trong thư mục `dist`. Nếu cần đường dẫn tùy chỉnh, truyền thêm tham số:
+
+```powershell
+scripts\package-extension.cmd -OutputDirectory "D:\builds\etsy"
+```
+
+> 💡 Để tạo HMAC, thêm file `scripts/hmac.key` chứa khóa hex (32 bytes hoặc hơn). Khi có file này, script sẽ sinh thêm `${zip}.hmac`.
+
+## � Tạo khóa HMAC (tùy chọn)
+
+```powershell
+scripts\generate-hmac-key.cmd
+```
+
+- Mặc định tạo khóa 32 bytes và lưu tại `scripts/hmac.key`.
+- Dùng thêm `-Bytes 64` nếu muốn khóa dài hơn, hoặc `-Force` để ghi đè khóa cũ.
+
+Sau khi có khóa, chạy lại script đóng gói để tạo file `.hmac` mới tương ứng.
+
+## 🗂️ Xuất `updates.json`
+
+Script dưới đây đọc `manifest.json`, sử dụng ZIP trong `dist`, đồng thời chèn `sha256` và `hmac` (nếu có) vào tệp cập nhật:
+
+```powershell
+scripts\write-updates-json.cmd -DownloadUrl "https://updates.example.com/releases/etsy-crawler-extension-1.0.2.zip" -ReleaseNotes "- Ghi chú phát hành"
+```
+
+- Kết quả mặc định lưu tại `dist/updates.json` (dùng `-OutputPath` nếu muốn đổi nơi lưu).
+- Nhớ chỉnh `-DownloadUrl` trỏ tới nơi bạn sẽ host file ZIP trên VPS.
+
+## ��🔭 Gợi ý mở rộng
 
 - Gộp nhóm lịch sử theo từ khóa hoặc chiến dịch để dễ quản lý.
 - Thêm bộ lọc nâng cao (khoảng giá, shop, tag).

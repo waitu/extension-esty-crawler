@@ -1,6 +1,6 @@
 const crawlSessions = new Map();
 
-const UPDATE_URL = "https://internal.example.com/updates.json";
+const UPDATE_URL = "http://45.77.247.228/updates.json";
 const UPDATE_STORAGE_KEY = "etsyCrawlerUpdateInfo";
 const UPDATE_ALARM_NAME = "etsyCrawlerUpdateAlarm";
 const UPDATE_INTERVAL_MINUTES = 180; // 3 giờ

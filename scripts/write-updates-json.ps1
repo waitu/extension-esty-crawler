@@ -13,29 +13,29 @@ Set-Location $projectRoot
 
 $manifestPath = Join-Path $projectRoot "manifest.json"
 if (-not (Test-Path $manifestPath)) {
-    throw "Không tìm thấy manifest.json"
+    throw "manifest.json not found"
 }
 
 $manifest = Get-Content -Raw $manifestPath | ConvertFrom-Json
 $version = $manifest.version
 if (-not $version) {
-    throw "Không đọc được phiên bản từ manifest.json"
+    throw "Cannot read version from manifest.json"
 }
 
 $distDirectory = Join-Path $projectRoot "dist"
 if (-not (Test-Path $distDirectory)) {
-    throw "Thư mục dist chưa tồn tại. Hãy chạy scripts\\package-extension.cmd trước."
+    throw "Dist directory not found. Please run scripts\package-extension.cmd first."
 }
 
 $zipName = "etsy-crawler-extension-$version.zip"
 $zipPath = Join-Path $distDirectory $zipName
 if (-not (Test-Path $zipPath)) {
-    throw "Không tìm thấy gói $zipName trong dist"
+    throw "Package $zipName not found in dist"
 }
 
 $shaPath = "$zipPath.sha256"
 if (-not (Test-Path $shaPath)) {
-    throw "Thiếu file SHA256 tại $shaPath"
+    throw "Missing SHA256 file at $shaPath"
 }
 
 $sha256 = (Get-Content -Raw $shaPath).Trim()
@@ -66,4 +66,4 @@ if ($hmac) {
 $json = $data | ConvertTo-Json -Depth 5
 Set-Content -Path $OutputPath -Value $json -Encoding UTF8
 
-Write-Host "updates.json được lưu tại $OutputPath"
+Write-Host "updates.json saved to $OutputPath"

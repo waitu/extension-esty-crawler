@@ -1,0 +1,9 @@
+﻿{
+    "latest":  {
+                   "version":  "1.0.2",
+                   "url":  "http://45.77.247.228/releases/etsy-crawler-extension-1.0.2.zip",
+                   "sha256":  "D6381FC6A08F69CFD846CD807C14CF85CB1E2506F89775DEE11AF46D814B3FA7",
+                   "releaseNotes":  "- Auto-update wiring - HTTP host setup",
+                   "hmac":  "F69DAB66DF3F9A3FF201434CD4109E48CA87EC23812E0A6ABEF9D7B98B4F7B86"
+               }
+}
